@@ -35,7 +35,145 @@ DB_FILE   = os.path.join(DATA_DIR, "s9x_secure_storage.db")
 CERT_FILE = os.path.join(DATA_DIR, "cert.pem")
 KEY_FILE  = os.path.join(DATA_DIR, "key.pem")
 ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif', 'mp4', 'mov', 'mkv', 'webp', 'avi', 'doc', 'docx', 'xls', 'xlsx', 'ppt', 'pptx', 'csv', 'rtf', 'odt', 'ods', 'odp'}
-INDEX_STATUS = {"status": "Bekleniyor...", "current_path": "", "total_files": 0}
+INDEX_STATUS = {"status": "Waiting...", "current_path": "", "total_files": 0}
+
+# --- DİL PAKETLERİ / LANGUAGE PACKS ---
+LANGUAGES = {
+    'en': {
+        # General
+        'lang_code': 'en',
+        'login_title': 'Login',
+        'login_heading': '🔒 LOGIN',
+        'username_placeholder': 'Username',
+        'password_placeholder': 'Password',
+        'login_btn': 'SIGN IN',
+        'logout_btn': 'Logout',
+        'wrong_login': 'Invalid credentials!',
+        'error': 'An error occurred.',
+        'fill_all': 'Please fill in all fields.',
+        # Setup
+        'setup_title': 'Setup',
+        'setup_heading': '🛠️ INITIAL SETUP',
+        'setup_notice': 'Create your admin account.',
+        'share_name_label': 'Share Name',
+        'path_label': 'Path',
+        'complete_btn': 'COMPLETE',
+        'select_folder_btn': '📂 Select',
+        'select_folder_title': 'Select Folder',
+        'select_btn': 'Select',
+        'cancel_btn': 'Cancel',
+        # Index page
+        'files_title': 'Files',
+        'search_placeholder': 'Search...',
+        'sort_name': 'A-Z',
+        'sort_date': 'Date',
+        'folder_placeholder': 'Folder',
+        # Admin panel
+        'admin_title': 'Management',
+        'back_btn': '⬅ Back',
+        'monitor_title': '📡 HDD Index Monitor (Night Mode)',
+        'monitor_status': 'STATUS:',
+        'monitor_processing': 'PROCESSING:',
+        'monitor_total': 'TOTAL:',
+        'users_heading': 'Users',
+        'user_col': 'User',
+        'role_col': 'Role',
+        'delete_col': 'Delete',
+        'delete_btn': 'Delete',
+        'add_btn': 'Add',
+        'shares_heading': 'Shares',
+        'name_col': 'Name',
+        'path_col': 'Path',
+        'remove_col': 'Remove',
+        'permissions_heading': 'Permissions',
+        'user_folder_col': 'User \\ Folder',
+        'confirm_delete': 'Delete?',
+        'loading': 'Loading...',
+        # Night mode scanner
+        'idx_waiting': 'Waiting...',
+        'idx_scanning': '🚀 Night Mode: Scanning...',
+        'idx_ready': '✅ Ready (Night Mode Waiting)',
+        'idx_ready_cache': '✅ Ready (Loaded from Cache)',
+        'idx_error': '❌ Error',
+        'idx_scanning_share': '📂 Scanning:',
+        'idx_last_scan': 'Last scan:',
+        'idx_db_empty': '--- Database empty, starting initial scan ---',
+        'idx_db_full': '--- Database loaded, using persistent cache ---',
+        'night_mode_start': 'Night mode started. Scanning...',
+        # Language switcher
+        'lang_switch_en': 'English',
+        'lang_switch_tr': 'Türkçe',
+    },
+    'tr': {
+        # Genel
+        'lang_code': 'tr',
+        'login_title': 'Giriş',
+        'login_heading': '🔒 GİRİŞ',
+        'username_placeholder': 'Kullanıcı Adı',
+        'password_placeholder': 'Parola',
+        'login_btn': 'GİRİŞ YAP',
+        'logout_btn': 'Çıkış',
+        'wrong_login': 'Hatalı giriş!',
+        'error': 'Hata oluştu.',
+        'fill_all': 'Tüm alanları doldurun.',
+        # Kurulum
+        'setup_title': 'Kurulum',
+        'setup_heading': '🛠️ İLK KURULUM',
+        'setup_notice': 'Admin hesabı oluşturun.',
+        'share_name_label': 'Paylaşım Adı',
+        'path_label': 'Yol',
+        'complete_btn': 'TAMAMLA',
+        'select_folder_btn': '📂 Seç',
+        'select_folder_title': 'Klasör Seç',
+        'select_btn': 'Seç',
+        'cancel_btn': 'İptal',
+        # Ana sayfa
+        'files_title': 'Dosyalar',
+        'search_placeholder': 'Ara...',
+        'sort_name': 'A-Z',
+        'sort_date': 'Tarih',
+        'folder_placeholder': 'Klasör',
+        # Admin paneli
+        'admin_title': 'Yönetim',
+        'back_btn': '⬅ Geri',
+        'monitor_title': '📡 HDD Index Monitörü (Gece Modu)',
+        'monitor_status': 'DURUM:',
+        'monitor_processing': 'İŞLENEN:',
+        'monitor_total': 'TOPLAM:',
+        'users_heading': 'Kullanıcılar',
+        'user_col': 'Kullanıcı',
+        'role_col': 'Rol',
+        'delete_col': 'Sil',
+        'delete_btn': 'Sil',
+        'add_btn': 'Ekle',
+        'shares_heading': 'Paylaşımlar',
+        'name_col': 'Ad',
+        'path_col': 'Yol',
+        'remove_col': 'Kaldır',
+        'permissions_heading': 'İzinler',
+        'user_folder_col': 'Kullanıcı \\ Klasör',
+        'confirm_delete': 'Sil?',
+        'loading': 'Yükleniyor...',
+        # Gece modu tarayıcısı
+        'idx_waiting': 'Bekleniyor...',
+        'idx_scanning': '🚀 Gece Modu: Taranıyor...',
+        'idx_ready': '✅ Hazır (Gece Bekleniyor)',
+        'idx_ready_cache': '✅ Hazır (Önbellekten Yüklendi)',
+        'idx_error': '❌ Hata',
+        'idx_scanning_share': '📂 Taranıyor:',
+        'idx_last_scan': 'Son tarama:',
+        'idx_db_empty': '--- Veritabanı boş, ilk tarama başlatılıyor ---',
+        'idx_db_full': '--- Veritabanı dolu, önceki kayıtlar kullanılıyor (Persistent Cache) ---',
+        'night_mode_start': 'Gece modu saati geldi. Tarama başlıyor...',
+        # Dil seçici
+        'lang_switch_en': 'English',
+        'lang_switch_tr': 'Türkçe',
+    }
+}
+
+def get_lang():
+    """Aktif dil paketini döndürür. Session'dan okur, yoksa 'en'."""
+    return LANGUAGES.get(session.get('lang', 'en'), LANGUAGES['en'])
 
 # --- OTO SERTİFİKA ---
 def check_and_create_certs():
@@ -60,10 +198,10 @@ def get_db_connection():
 
 # --- CSS/HTML ---
 CSS_CODE = """:root{--bg:#fff;--fg:#111;--card:#f2f2f2;--accent:#2563eb;--danger:#dc2626;--success:#16a34a;} @media(prefers-color-scheme:dark){:root{--bg:#0d1117;--fg:#c9d1d9;--card:#161b22;}} body{margin:0;background:var(--bg);color:var(--fg);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;} header{padding:15px;border-bottom:1px solid #30363d;display:flex;gap:15px;align-items:center;flex-wrap:wrap;} .logo{font-weight:bold;font-size:1.2rem;margin-right:auto;} .search-box input{background:var(--card);border:1px solid #30363d;color:var(--fg);padding:8px;border-radius:6px;outline:none;} .btn{padding:8px 12px;border-radius:6px;cursor:pointer;font-size:14px;border:none;color:#fff;text-decoration:none;display:inline-flex;align-items:center;gap:5px;} .btn-red{background:var(--danger);} .btn-blue{background:var(--accent);} .btn-gray{background:#4b5563;} .btn-green{background:var(--success);} .toolbar{padding:10px 15px;display:flex;gap:10px;align-items:center;overflow-x:auto;background:rgba(0,0,0,0.05);} .breadcrumb{display:flex;gap:5px;font-size:14px;white-space:nowrap;} .breadcrumb a{color:var(--accent);text-decoration:none;} .breadcrumb span{color:#666;} .alert-box{padding:12px;margin:10px 15px;border-radius:6px;text-align:center;font-weight:600;font-size:14px;border:1px solid transparent;display:none;position:relative;} .alert-error{background:#ffeded;color:#dc2626;border-color:#fecaca;} .alert-success{background:#dcfce7;color:#166534;border-color:#bbf7d0;} .close-btn{position:absolute;right:15px;top:50%;transform:translateY(-50%);cursor:pointer;font-size:18px;font-weight:bold;opacity:0.6;} .close-btn:hover{opacity:1;} .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:10px;padding:15px;} .card{background:var(--card);border-radius:10px;overflow:hidden;position:relative;transition:transform .2s;} .card:hover{transform:translateY(-3px);box-shadow:0 4px 12px rgba(0,0,0,.2);} .thumb{width:100%;height:120px;display:flex;align-items:center;justify-content:center;font-size:40px;background:#222;overflow:hidden;position:relative;} .thumb img{width:100%;height:100%;object-fit:cover;transition:.3s;} .card:hover .thumb img{transform:scale(1.1);} .info{padding:10px;font-size:13px;} .name{font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:block;margin-bottom:4px;color:var(--fg);text-decoration:none;} .meta{font-size:11px;color:#888;display:flex;justify-content:space-between;} .actions{position:absolute;top:5px;right:5px;display:none;z-index:10;} .card:hover .actions{display:block;} .del-btn{background:rgba(220,38,38,.9);color:#fff;border:none;width:24px;height:24px;border-radius:4px;cursor:pointer;display:flex;align-items:center;justify-content:center;text-decoration:none;} .icon-dir{color:#fbbf24;} .icon-file{color:#9ca3af;} .icon-vid{color:#f87171;} .icon-doc{color:#60a5fa;} .icon-xls{color:#34d399;} .icon-ppt{color:#f97316;} .icon-pdf{color:#ef4444;} .monitor-box{background:#1e293b;color:#fff;padding:15px;margin:15px;border-radius:8px;font-family:monospace;border:1px solid #334155;} .monitor-row{display:flex;justify-content:space-between;margin-bottom:5px;} .monitor-bar{height:4px;background:#334155;width:100%;margin-top:10px;position:relative;overflow:hidden;} .monitor-bar-inner{height:100%;background:#3b82f6;width:100%;animation:pulse 2s infinite;} @keyframes pulse{0%{opacity:.5;} 50%{opacity:1;} 100%{opacity:.5;}} #viewer{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.95);display:none;z-index:9999;align-items:center;justify-content:center;flex-direction:column;} #viewer-content{max-width:90%;max-height:85%;display:flex;align-items:center;justify-content:center;} #viewer img,#viewer video{max-width:100%;max-height:80vh;box-shadow:0 0 20px #000;} .viewer-btn{position:absolute;top:50%;transform:translateY(-50%);font-size:3rem;color:#fff;background:0 0;border:none;cursor:pointer;padding:20px;z-index:10000;} .viewer-btn:hover{color:#2563eb;} #prev-btn{left:20px;} #next-btn{right:20px;} #close-btn{position:absolute;top:20px;right:30px;font-size:2rem;color:#fff;cursor:pointer;z-index:10001;}"""
-HTML_LOGIN = """<!doctype html><html lang="tr"><head><meta charset="utf-8"><title>Giriş</title><style>""" + CSS_CODE + """body{display:flex;justify-content:center;align-items:center;height:100vh;flex-direction:column;} .login-box{background:var(--card);padding:2rem;border:1px solid #30363d;border-radius:6px;width:300px;text-align:center;} input{width:100%;padding:10px;margin:10px 0;background:var(--bg);border:1px solid #30363d;color:var(--fg);border-radius:4px;box-sizing:border-box;}</style></head><body>{% with messages=get_flashed_messages(with_categories=true) %}{% if messages %}{% for c, m in messages %}<div class="alert-box alert-{{ c }}" style="display:block;">{{ m }}<span class="close-btn" onclick="this.parentElement.style.display='none';">&times;</span></div>{% endfor %}{% endif %}{% endwith %}<div class="login-box"><h2>🔒 GİRİŞ</h2><form method="post"><input type="hidden" name="csrf_token" value="{{ csrf_token() }}"><input type="text" name="username" placeholder="Kullanıcı Adı" required autofocus><input type="password" name="password" placeholder="Parola" required><button type="submit" class="btn btn-green" style="width:100%">GİRİŞ YAP</button></form></div></body></html>"""
-HTML_SETUP = """<!doctype html><html lang="tr"><head><meta charset="utf-8"><title>Kurulum</title><style>""" + CSS_CODE + """body{display:flex;justify-content:center;align-items:center;height:100vh;} .box{background:var(--card);padding:2rem;border:1px solid #30363d;border-radius:8px;width:450px;} input{width:100%;padding:10px;margin:10px 0;background:var(--bg);border:1px solid #30363d;color:var(--fg);border-radius:4px;box-sizing:border-box;} .modal{display:none;position:fixed;z-index:999;left:0;top:0;width:100%;height:100%;overflow:auto;background-color:rgba(0,0,0,.8);} .modal-content{background-color:var(--card);color:var(--fg);margin:10% auto;padding:20px;border:1px solid #888;width:500px;border-radius:8px;} .file-list{list-style:none;padding:0;margin:10px 0;max-height:300px;overflow-y:auto;border:1px solid #30363d;} .file-list li{padding:8px;border-bottom:1px solid #30363d;cursor:pointer;display:flex;align-items:center;} .file-list li:hover{background-color:#1f6feb;color:#fff;}</style><script>let currentBrowsePath="/";function openFolderModal(){document.getElementById('folderModal').style.display='block';loadDirs(currentBrowsePath);}function closeModal(){document.getElementById('folderModal').style.display='none';}function loadDirs(path){const fd=new FormData();fd.append('path',path);fd.append('csrf_token',document.querySelector('input[name="csrf_token"]').value);document.getElementById('currentPathDisplay').innerText="Yükleniyor...";fetch('/admin/list_dirs',{method:'POST',body:fd}).then(r=>r.json()).then(data=>{if(data.error){alert(data.error);return;}currentBrowsePath=data.current;document.getElementById('currentPathDisplay').innerText=currentBrowsePath;const list=document.getElementById('dirList');list.innerHTML="";data.dirs.forEach(d=>{const li=document.createElement('li');li.innerHTML=`📁 ${d.name}`;li.onclick=()=>loadDirs(d.path);list.appendChild(li);});});}function selectCurrentFolder(){document.getElementById('sharePathInput').value=currentBrowsePath;closeModal();}function updateMonitor(){fetch('/admin/indexing_status').then(r=>r.json()).then(data=>{document.getElementById('idx-status').innerText=data.status;document.getElementById('idx-path').innerText=data.current_path;document.getElementById('idx-count').innerText=data.total_files+" Dosya";if(data.status.includes('Taranıyor')){document.getElementById('idx-bar').style.display='block';}else{document.getElementById('idx-bar').style.display='none';}});}setInterval(updateMonitor,1500);</script></head><body><div class="box"><h2>🛠️ İLK KURULUM</h2><div style="font-size:12px;color:#f85149;margin-bottom:20px;text-align:center;border:1px solid #f85149;padding:5px;">Admin hesabı oluşturun.</div><form method="post"><input type="hidden" name="csrf_token" value="{{ csrf_token() }}"><label>Kullanıcı Adı</label><input type="text" name="username" required><label>Parola</label><input type="password" name="password" required><hr><label>Paylaşım Adı</label><input type="text" name="share_name" required><label>Yol</label><div style="display:flex;gap:5px;"><input type="text" id="sharePathInput" name="share_path" required><button type="button" onclick="openFolderModal()" class="btn btn-gray">📂 Seç</button></div><button type="submit" class="btn btn-green" style="width:100%;margin-top:20px;">TAMAMLA</button></form></div><div id="folderModal" class="modal"><div class="modal-content"><h3>Klasör Seç</h3><div id="currentPathDisplay" style="font-family:monospace;background:var(--bg);padding:8px;">/</div><ul id="dirList" class="file-list"></ul><div style="text-align:right;"><button onclick="selectCurrentFolder()" class="btn btn-green">Seç</button><button onclick="closeModal()" class="btn btn-red">İptal</button></div></div></div></body></html>"""
-HTML_INDEX = """<!doctype html><html lang="tr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Dosyalar</title><style>""" + CSS_CODE + """</style></head><body><header><div class="logo">USBHDD SYSTEM</div><form class="search-box" action="" method="get"><input type="text" name="q" placeholder="Ara..." value="{{ q }}"></form><div style="display:flex;gap:5px;">{% if is_admin %}<a href="/admin" class="btn" style="background:#8957e5;">⚙️</a>{% endif %}<a href="?sort=name" class="btn btn-gray">A-Z</a><a href="?sort=date" class="btn btn-gray">Tarih</a><a href="/logout" class="btn btn-red">Çıkış</a></div></header><div id="js-alert" class="alert-box alert-error"><span id="js-alert-msg"></span><span class="close-btn" onclick="this.parentElement.style.display='none';">&times;</span></div>{% with messages=get_flashed_messages(with_categories=true) %}{% if messages %}{% for c, m in messages %}<div class="alert-box alert-{{ c }}" style="display:block;">{{ m }}<span class="close-btn" onclick="this.parentElement.style.display='none';">&times;</span></div>{% endfor %}{% endif %}{% endwith %}<div class="toolbar"><div class="breadcrumb"><a href="/">🏠</a>{% for crumb in breadcrumbs %}<span>/</span> <a href="/{{ crumb.path }}">{{ crumb.name }}</a>{% endfor %}</div><div style="margin-left:auto;display:flex;gap:10px;"><form action="/mkdir/{{ path }}" method="post" style="display:flex;"><input type="hidden" name="csrf_token" value="{{ csrf_token() }}"><input type="text" name="foldername" placeholder="Klasör" style="width:80px;padding:5px;" required><button type="submit" class="btn btn-blue">+</button></form><form action="/upload/{{ path }}" method="post" enctype="multipart/form-data"><input type="hidden" name="csrf_token" value="{{ csrf_token() }}"><label class="btn btn-blue" style="cursor:pointer;">⬆ <input type="file" name="file" style="display:none" onchange="this.form.submit()"></label></form></div></div><div class="grid">{% if path %}{% set parts=path.split('/') %}<div class="card" onclick="location.href='/{{ parts[:-1]|join('/') }}'" style="cursor:pointer;display:flex;align-items:center;justify-content:center;background:#222;color:#fff;"><div style="font-size:30px;">⬅</div></div>{% endif %}{% for item in items %}<div class="card">{% if not item.is_drive %}<div class="actions"><a href="/delete/{{ item.path }}" onclick="return confirm('Sil?')" class="del-btn">✕</a></div>{% endif %}<a href="/{{ item.path }}" {% if not item.is_dir %}data-file{% endif %}><div class="thumb">{% if item.is_drive %} 💾 {% elif item.is_dir %} <span class="icon-dir">📁</span>{% else %}{% set n=item.name.lower() %}{% if n.endswith(('.jpg','.jpeg','.png','.webp','.gif')) %}<img src="/thumb/{{ item.path }}" loading="lazy">{% elif n.endswith(('.mp4','.mov','.mkv','.avi')) %}<span class="icon-vid">🎬</span>{% elif n.endswith('.pdf') %}<span class="icon-pdf">📕</span>{% else %}<span class="icon-file">📄</span>{% endif %}{% endif %}</div></a><div class="info"><a href="/{{ item.path }}" class="name">{{ item.name }}</a><div class="meta"><span>{{ item.human_size if not item.is_dir else '' }}</span></div></div></div>{% endfor %}</div><div id="viewer"><div id="close-btn" onclick="closeViewer()">✕</div><div id="prev-btn" class="viewer-btn">◀</div><div id="viewer-content"><img id="viewer-img" style="display:none;"><video id="viewer-video" controls autoplay style="display:none;"></video></div><div id="next-btn" class="viewer-btn">▶</div></div><script>let currentIndex=0;let mediaList=[];document.addEventListener("DOMContentLoaded",()=>{const allLinks=document.querySelectorAll('a[data-file]');const allowedExts=['.jpg','.jpeg','.png','.gif','.webp','.mp4','.mov','.mkv','.avi'];allLinks.forEach((link)=>{const href=link.getAttribute('href');const lowerHref=href.toLowerCase();if(allowedExts.some(ext=>lowerHref.endsWith(ext))){link.addEventListener('click',(e)=>{e.preventDefault();openViewer(href);});mediaList.push(href);}});});function openViewer(src){currentIndex=mediaList.indexOf(src);updateViewer();document.getElementById('viewer').style.display='flex';}function closeViewer(){document.getElementById('viewer').style.display='none';document.getElementById('viewer-video').pause();}function updateViewer(){if(currentIndex<0)currentIndex=mediaList.length-1;if(currentIndex>=mediaList.length)currentIndex=0;const src=mediaList[currentIndex];const isVideo=src.match(/\.(mp4|mov|mkv|avi)$/i);const imgEl=document.getElementById('viewer-img');const vidEl=document.getElementById('viewer-video');if(isVideo){imgEl.style.display='none';vidEl.style.display='block';vidEl.src=src;}else{vidEl.style.display='none';vidEl.pause();imgEl.style.display='block';imgEl.src=src;}}document.getElementById('prev-btn').addEventListener('click',(e)=>{e.stopPropagation();currentIndex--;updateViewer();});document.getElementById('next-btn').addEventListener('click',(e)=>{e.stopPropagation();currentIndex++;updateViewer();});document.addEventListener('keydown',(e)=>{if(document.getElementById('viewer').style.display==='flex'){if(e.key==='ArrowLeft'){currentIndex--;updateViewer();}if(e.key==='ArrowRight'){currentIndex++;updateViewer();}if(e.key==='Escape')closeViewer();}});</script></body></html>"""
-HTML_ADMIN = """<!doctype html><html lang="tr"><head><meta charset="utf-8"><title>Yönetim</title><style>""" + CSS_CODE + """table{width:100%;border-collapse:collapse;margin-bottom:20px;border:1px solid #30363d;} th,td{padding:12px;border-bottom:1px solid #30363d;} .modal{display:none;position:fixed;z-index:999;left:0;top:0;width:100%;height:100%;overflow:auto;background-color:rgba(0,0,0,.8);} .modal-content{background-color:var(--card);color:var(--fg);margin:5% auto;padding:20px;border:1px solid #888;width:600px;border-radius:8px;} .file-list{list-style:none;padding:0;margin:10px 0;max-height:400px;overflow-y:auto;border:1px solid #30363d;} .file-list li{padding:8px;border-bottom:1px solid #30363d;cursor:pointer;} .file-list li:hover{background-color:#1f6feb;color:#fff;} script{font-family:monospace;}</style><script>function togglePerm(uid,sid,cb){const fd=new FormData();fd.append('user_id',uid);fd.append('share_id',sid);fd.append('action',cb.checked?'add':'remove');fd.append('csrf_token','{{ csrf_token() }}');fetch('/admin/toggle_perm',{method:'POST',body:fd});}let currentBrowsePath="/";function openFolderModal(){document.getElementById('folderModal').style.display='block';loadDirs(currentBrowsePath);}function closeModal(){document.getElementById('folderModal').style.display='none';}function loadDirs(path){const fd=new FormData();fd.append('path',path);fd.append('csrf_token','{{ csrf_token() }}');document.getElementById('currentPathDisplay').innerText="Yükleniyor...";fetch('/admin/list_dirs',{method:'POST',body:fd}).then(r=>r.json()).then(data=>{if(data.error){alert(data.error);return;}currentBrowsePath=data.current;document.getElementById('currentPathDisplay').innerText=currentBrowsePath;const list=document.getElementById('dirList');list.innerHTML="";data.dirs.forEach(d=>{const li=document.createElement('li');li.innerHTML=`📁 ${d.name}`;li.onclick=()=>loadDirs(d.path);list.appendChild(li);});});}function selectCurrentFolder(){document.getElementById('sharePathInput').value=currentBrowsePath;closeModal();}function updateMonitor(){fetch('/admin/indexing_status').then(r=>r.json()).then(data=>{document.getElementById('idx-status').innerText=data.status;document.getElementById('idx-path').innerText=data.current_path;document.getElementById('idx-count').innerText=data.total_files+" Dosya";if(data.status.includes('Taranıyor')){document.getElementById('idx-bar').style.display='block';}else{document.getElementById('idx-bar').style.display='none';}});}setInterval(updateMonitor,1500);</script></head><body><div class="container"><a href="/" class="btn btn-gray">⬅ Geri</a><div class="monitor-box"><h3>📡 HDD Index Monitörü (Gece Modu)</h3><div class="monitor-row"><span>DURUM:</span> <b id="idx-status" style="color:#fbbf24">Yükleniyor...</b></div><div class="monitor-row"><span>İŞLENEN:</span> <b id="idx-path" style="font-size:12px;opacity:.8">...</b></div><div class="monitor-row"><span>TOPLAM:</span> <b id="idx-count">0</b></div><div class="monitor-bar" id="idx-bar" style="display:none;"><div class="monitor-bar-inner"></div></div></div>{% with messages=get_flashed_messages(with_categories=true) %}{% if messages %}{% for c, m in messages %}<div style="padding:10px;margin:20px 0;background:var(--accent);color:#fff;">{{ m }}</div>{% endfor %}{% endif %}{% endwith %}<h2>Kullanıcılar</h2><table><tr><th>Kullanıcı</th><th>Rol</th><th>Sil</th></tr>{% for u in users %}<tr><td>{{ u['username'] }}</td><td>{{ u['role'] }}</td><td>{% if u['role']!='admin' %}<a href="/admin/delete_user/{{ u['id'] }}" onclick="return confirm('Sil?')" class="btn btn-red">Sil</a>{% endif %}</td></tr>{% endfor %}<tr><form action="/admin/add_user" method="post"><input type="hidden" name="csrf_token" value="{{ csrf_token() }}"><td><input type="text" name="username" placeholder="Ad" required></td><td><input type="password" name="password" placeholder="Şifre" required></td><td><button type="submit" class="btn btn-green">Ekle</button></td></form></tr></table><h2>Paylaşımlar</h2><table><tr><th>Ad</th><th>Yol</th><th>Kaldır</th></tr>{% for s in shares %}<tr><td>{{ s['name'] }}</td><td>{{ s['path'] }}</td><td><a href="/admin/delete_share/{{ s['id'] }}" onclick="return confirm('Sil?')" class="btn btn-red">Sil</a></td></tr>{% endfor %}<tr><form action="/admin/add_share" method="post"><input type="hidden" name="csrf_token" value="{{ csrf_token() }}"><td><input type="text" name="name" placeholder="Ad" required></td><td style="display:flex;"><input type="text" id="sharePathInput" name="path" required><button type="button" onclick="openFolderModal()" class="btn btn-gray">📂 Seç</button></td><td><button type="submit" class="btn btn-blue">Ekle</button></td></form></tr></table><h3>İzinler</h3><div style="overflow-x:auto;"><table border="1"><tr><th>Kullanıcı \ Klasör</th>{% for s in shares %}<th>{{ s['name'] }}</th>{% endfor %}</tr>{% for u in users %}{% if u['role']!='admin' %}<tr><td><b>{{ u['username'] }}</b></td>{% for s in shares %}<td style="text-align:center;"><input type="checkbox" onchange="togglePerm({{ u['id'] }}, {{ s['id'] }}, this)" {% if u['id'] in permissions and s['id'] in permissions[u['id']] %}checked{% endif %}></td>{% endfor %}</tr>{% endif %}{% endfor %}</table></div><div id="folderModal" class="modal"><div class="modal-content"><h3>Klasör Seç</h3><div id="currentPathDisplay" style="background:var(--bg);padding:5px;">/</div><ul id="dirList" class="file-list"></ul><div style="text-align:right;"><button onclick="selectCurrentFolder()" class="btn btn-green">Seç</button><button onclick="closeModal()" class="btn btn-red">İptal</button></div></div></div></div></body></html>"""
+HTML_LOGIN = """<!doctype html><html lang="{{ t.lang_code }}"><head><meta charset="utf-8"><title>{{ t.login_title }}</title><style>""" + CSS_CODE + """body{display:flex;justify-content:center;align-items:center;height:100vh;flex-direction:column;} .login-box{background:var(--card);padding:2rem;border:1px solid #30363d;border-radius:6px;width:300px;text-align:center;} input{width:100%;padding:10px;margin:10px 0;background:var(--bg);border:1px solid #30363d;color:var(--fg);border-radius:4px;box-sizing:border-box;}</style></head><body>{% with messages=get_flashed_messages(with_categories=true) %}{% if messages %}{% for c, m in messages %}<div class="alert-box alert-{{ c }}" style="display:block;">{{ m }}<span class="close-btn" onclick="this.parentElement.style.display='none';">&times;</span></div>{% endfor %}{% endif %}{% endwith %}<div class="login-box"><h2>{{ t.login_heading }}</h2><form method="post"><input type="hidden" name="csrf_token" value="{{ csrf_token() }}"><input type="text" name="username" placeholder="{{ t.username_placeholder }}" required autofocus><input type="password" name="password" placeholder="{{ t.password_placeholder }}" required><button type="submit" class="btn btn-green" style="width:100%">{{ t.login_btn }}</button></form><div style="margin-top:12px;font-size:12px;color:#888;"><a href="/lang/en" style="color:var(--accent);text-decoration:none;">English</a> | <a href="/lang/tr" style="color:var(--accent);text-decoration:none;">Türkçe</a></div></div></body></html>"""
+HTML_SETUP = """<!doctype html><html lang="{{ t.lang_code }}"><head><meta charset="utf-8"><title>{{ t.setup_title }}</title><style>""" + CSS_CODE + """body{display:flex;justify-content:center;align-items:center;height:100vh;} .box{background:var(--card);padding:2rem;border:1px solid #30363d;border-radius:8px;width:450px;} input{width:100%;padding:10px;margin:10px 0;background:var(--bg);border:1px solid #30363d;color:var(--fg);border-radius:4px;box-sizing:border-box;} .modal{display:none;position:fixed;z-index:999;left:0;top:0;width:100%;height:100%;overflow:auto;background-color:rgba(0,0,0,.8);} .modal-content{background-color:var(--card);color:var(--fg);margin:10% auto;padding:20px;border:1px solid #888;width:500px;border-radius:8px;} .file-list{list-style:none;padding:0;margin:10px 0;max-height:300px;overflow-y:auto;border:1px solid #30363d;} .file-list li{padding:8px;border-bottom:1px solid #30363d;cursor:pointer;display:flex;align-items:center;} .file-list li:hover{background-color:#1f6feb;color:#fff;}</style><script>let currentBrowsePath="/";function openFolderModal(){document.getElementById('folderModal').style.display='block';loadDirs(currentBrowsePath);}function closeModal(){document.getElementById('folderModal').style.display='none';}function loadDirs(path){const fd=new FormData();fd.append('path',path);fd.append('csrf_token',document.querySelector('input[name="csrf_token"]').value);document.getElementById('currentPathDisplay').innerText="{{ t.loading }}";fetch('/admin/list_dirs',{method:'POST',body:fd}).then(r=>r.json()).then(data=>{if(data.error){alert(data.error);return;}currentBrowsePath=data.current;document.getElementById('currentPathDisplay').innerText=currentBrowsePath;const list=document.getElementById('dirList');list.innerHTML="";data.dirs.forEach(d=>{const li=document.createElement('li');li.innerHTML=`📁 ${d.name}`;li.onclick=()=>loadDirs(d.path);list.appendChild(li);});});}function selectCurrentFolder(){document.getElementById('sharePathInput').value=currentBrowsePath;closeModal();}function updateMonitor(){fetch('/admin/indexing_status').then(r=>r.json()).then(data=>{document.getElementById('idx-status').innerText=data.status;document.getElementById('idx-path').innerText=data.current_path;document.getElementById('idx-count').innerText=data.total_files+" Files";if(data.status.includes('Scanning')||data.status.includes('Taranıyor')){document.getElementById('idx-bar').style.display='block';}else{document.getElementById('idx-bar').style.display='none';}});}setInterval(updateMonitor,1500);</script></head><body><div class="box"><h2>{{ t.setup_heading }}</h2><div style="font-size:12px;color:#f85149;margin-bottom:20px;text-align:center;border:1px solid #f85149;padding:5px;">{{ t.setup_notice }}</div><form method="post"><input type="hidden" name="csrf_token" value="{{ csrf_token() }}"><label>{{ t.username_placeholder }}</label><input type="text" name="username" required><label>{{ t.password_placeholder }}</label><input type="password" name="password" required><hr><label>{{ t.share_name_label }}</label><input type="text" name="share_name" required><label>{{ t.path_label }}</label><div style="display:flex;gap:5px;"><input type="text" id="sharePathInput" name="share_path" required><button type="button" onclick="openFolderModal()" class="btn btn-gray">{{ t.select_folder_btn }}</button></div><button type="submit" class="btn btn-green" style="width:100%;margin-top:20px;">{{ t.complete_btn }}</button></form><div style="margin-top:12px;text-align:center;font-size:12px;color:#888;"><a href="/lang/en" style="color:var(--accent);text-decoration:none;">English</a> | <a href="/lang/tr" style="color:var(--accent);text-decoration:none;">Türkçe</a></div></div><div id="folderModal" class="modal"><div class="modal-content"><h3>{{ t.select_folder_title }}</h3><div id="currentPathDisplay" style="font-family:monospace;background:var(--bg);padding:8px;">/</div><ul id="dirList" class="file-list"></ul><div style="text-align:right;"><button onclick="selectCurrentFolder()" class="btn btn-green">{{ t.select_btn }}</button><button onclick="closeModal()" class="btn btn-red">{{ t.cancel_btn }}</button></div></div></div></body></html>"""
+HTML_INDEX = """<!doctype html><html lang="{{ t.lang_code }}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>{{ t.files_title }}</title><style>""" + CSS_CODE + """</style></head><body><header><div class="logo">USBHDD SYSTEM</div><form class="search-box" action="" method="get"><input type="text" name="q" placeholder="{{ t.search_placeholder }}" value="{{ q }}"></form><div style="display:flex;gap:5px;">{% if is_admin %}<a href="/admin" class="btn" style="background:#8957e5;">⚙️</a>{% endif %}<a href="?sort=name" class="btn btn-gray">{{ t.sort_name }}</a><a href="?sort=date" class="btn btn-gray">{{ t.sort_date }}</a><a href="/logout" class="btn btn-red">{{ t.logout_btn }}</a></div></header><div id="js-alert" class="alert-box alert-error"><span id="js-alert-msg"></span><span class="close-btn" onclick="this.parentElement.style.display='none';">&times;</span></div>{% with messages=get_flashed_messages(with_categories=true) %}{% if messages %}{% for c, m in messages %}<div class="alert-box alert-{{ c }}" style="display:block;">{{ m }}<span class="close-btn" onclick="this.parentElement.style.display='none';">&times;</span></div>{% endfor %}{% endif %}{% endwith %}<div class="toolbar"><div class="breadcrumb"><a href="/">🏠</a>{% for crumb in breadcrumbs %}<span>/</span> <a href="/{{ crumb.path }}">{{ crumb.name }}</a>{% endfor %}</div><div style="margin-left:auto;display:flex;gap:10px;"><form action="/mkdir/{{ path }}" method="post" style="display:flex;"><input type="hidden" name="csrf_token" value="{{ csrf_token() }}"><input type="text" name="foldername" placeholder="{{ t.folder_placeholder }}" style="width:80px;padding:5px;" required><button type="submit" class="btn btn-blue">+</button></form><form action="/upload/{{ path }}" method="post" enctype="multipart/form-data"><input type="hidden" name="csrf_token" value="{{ csrf_token() }}"><label class="btn btn-blue" style="cursor:pointer;">⬆ <input type="file" name="file" style="display:none" onchange="this.form.submit()"></label></form></div></div><div class="grid">{% if path %}{% set parts=path.split('/') %}<div class="card" onclick="location.href='/{{ parts[:-1]|join('/') }}'" style="cursor:pointer;display:flex;align-items:center;justify-content:center;background:#222;color:#fff;"><div style="font-size:30px;">⬅</div></div>{% endif %}{% for item in items %}<div class="card">{% if not item.is_drive %}<div class="actions"><a href="/delete/{{ item.path }}" onclick="return confirm('{{ t.confirm_delete }}')" class="del-btn">✕</a></div>{% endif %}<a href="/{{ item.path }}" {% if not item.is_dir %}data-file{% endif %}><div class="thumb">{% if item.is_drive %} 💾 {% elif item.is_dir %} <span class="icon-dir">📁</span>{% else %}{% set n=item.name.lower() %}{% if n.endswith(('.jpg','.jpeg','.png','.webp','.gif')) %}<img src="/thumb/{{ item.path }}" loading="lazy">{% elif n.endswith(('.mp4','.mov','.mkv','.avi')) %}<span class="icon-vid">🎬</span>{% elif n.endswith('.pdf') %}<span class="icon-pdf">📕</span>{% else %}<span class="icon-file">📄</span>{% endif %}{% endif %}</div></a><div class="info"><a href="/{{ item.path }}" class="name">{{ item.name }}</a><div class="meta"><span>{{ item.human_size if not item.is_dir else '' }}</span></div></div></div>{% endfor %}</div><div id="viewer"><div id="close-btn" onclick="closeViewer()">✕</div><div id="prev-btn" class="viewer-btn">◀</div><div id="viewer-content"><img id="viewer-img" style="display:none;"><video id="viewer-video" controls autoplay style="display:none;"></video></div><div id="next-btn" class="viewer-btn">▶</div></div><script>let currentIndex=0;let mediaList=[];document.addEventListener("DOMContentLoaded",()=>{const allLinks=document.querySelectorAll('a[data-file]');const allowedExts=['.jpg','.jpeg','.png','.gif','.webp','.mp4','.mov','.mkv','.avi'];allLinks.forEach((link)=>{const href=link.getAttribute('href');const lowerHref=href.toLowerCase();if(allowedExts.some(ext=>lowerHref.endsWith(ext))){link.addEventListener('click',(e)=>{e.preventDefault();openViewer(href);});mediaList.push(href);}});});function openViewer(src){currentIndex=mediaList.indexOf(src);updateViewer();document.getElementById('viewer').style.display='flex';}function closeViewer(){document.getElementById('viewer').style.display='none';document.getElementById('viewer-video').pause();}function updateViewer(){if(currentIndex<0)currentIndex=mediaList.length-1;if(currentIndex>=mediaList.length)currentIndex=0;const src=mediaList[currentIndex];const isVideo=src.match(/\.(mp4|mov|mkv|avi)$/i);const imgEl=document.getElementById('viewer-img');const vidEl=document.getElementById('viewer-video');if(isVideo){imgEl.style.display='none';vidEl.style.display='block';vidEl.src=src;}else{vidEl.style.display='none';vidEl.pause();imgEl.style.display='block';imgEl.src=src;}}document.getElementById('prev-btn').addEventListener('click',(e)=>{e.stopPropagation();currentIndex--;updateViewer();});document.getElementById('next-btn').addEventListener('click',(e)=>{e.stopPropagation();currentIndex++;updateViewer();});document.addEventListener('keydown',(e)=>{if(document.getElementById('viewer').style.display==='flex'){if(e.key==='ArrowLeft'){currentIndex--;updateViewer();}if(e.key==='ArrowRight'){currentIndex++;updateViewer();}if(e.key==='Escape')closeViewer();}});</script></body></html>"""
+HTML_ADMIN = """<!doctype html><html lang="{{ t.lang_code }}"><head><meta charset="utf-8"><title>{{ t.admin_title }}</title><style>""" + CSS_CODE + """table{width:100%;border-collapse:collapse;margin-bottom:20px;border:1px solid #30363d;} th,td{padding:12px;border-bottom:1px solid #30363d;} .modal{display:none;position:fixed;z-index:999;left:0;top:0;width:100%;height:100%;overflow:auto;background-color:rgba(0,0,0,.8);} .modal-content{background-color:var(--card);color:var(--fg);margin:5% auto;padding:20px;border:1px solid #888;width:600px;border-radius:8px;} .file-list{list-style:none;padding:0;margin:10px 0;max-height:400px;overflow-y:auto;border:1px solid #30363d;} .file-list li{padding:8px;border-bottom:1px solid #30363d;cursor:pointer;} .file-list li:hover{background-color:#1f6feb;color:#fff;} script{font-family:monospace;}</style><script>function togglePerm(uid,sid,cb){const fd=new FormData();fd.append('user_id',uid);fd.append('share_id',sid);fd.append('action',cb.checked?'add':'remove');fd.append('csrf_token','{{ csrf_token() }}');fetch('/admin/toggle_perm',{method:'POST',body:fd});}let currentBrowsePath="/";function openFolderModal(){document.getElementById('folderModal').style.display='block';loadDirs(currentBrowsePath);}function closeModal(){document.getElementById('folderModal').style.display='none';}function loadDirs(path){const fd=new FormData();fd.append('path',path);fd.append('csrf_token','{{ csrf_token() }}');document.getElementById('currentPathDisplay').innerText="{{ t.loading }}";fetch('/admin/list_dirs',{method:'POST',body:fd}).then(r=>r.json()).then(data=>{if(data.error){alert(data.error);return;}currentBrowsePath=data.current;document.getElementById('currentPathDisplay').innerText=currentBrowsePath;const list=document.getElementById('dirList');list.innerHTML="";data.dirs.forEach(d=>{const li=document.createElement('li');li.innerHTML=`📁 ${d.name}`;li.onclick=()=>loadDirs(d.path);list.appendChild(li);});});}function selectCurrentFolder(){document.getElementById('sharePathInput').value=currentBrowsePath;closeModal();}function updateMonitor(){fetch('/admin/indexing_status').then(r=>r.json()).then(data=>{document.getElementById('idx-status').innerText=data.status;document.getElementById('idx-path').innerText=data.current_path;document.getElementById('idx-count').innerText=data.total_files+" Files";if(data.status.includes('Scanning')||data.status.includes('Taranıyor')){document.getElementById('idx-bar').style.display='block';}else{document.getElementById('idx-bar').style.display='none';}});}setInterval(updateMonitor,1500);</script></head><body><div class="container"><a href="/" class="btn btn-gray">{{ t.back_btn }}</a><div style="float:right;padding:10px;font-size:12px;"><a href="/lang/en" style="color:var(--accent);text-decoration:none;">English</a> | <a href="/lang/tr" style="color:var(--accent);text-decoration:none;">Türkçe</a></div><div class="monitor-box"><h3>{{ t.monitor_title }}</h3><div class="monitor-row"><span>{{ t.monitor_status }}</span> <b id="idx-status" style="color:#fbbf24">{{ t.loading }}</b></div><div class="monitor-row"><span>{{ t.monitor_processing }}</span> <b id="idx-path" style="font-size:12px;opacity:.8">...</b></div><div class="monitor-row"><span>{{ t.monitor_total }}</span> <b id="idx-count">0</b></div><div class="monitor-bar" id="idx-bar" style="display:none;"><div class="monitor-bar-inner"></div></div></div>{% with messages=get_flashed_messages(with_categories=true) %}{% if messages %}{% for c, m in messages %}<div style="padding:10px;margin:20px 0;background:var(--accent);color:#fff;">{{ m }}</div>{% endfor %}{% endif %}{% endwith %}<h2>{{ t.users_heading }}</h2><table><tr><th>{{ t.user_col }}</th><th>{{ t.role_col }}</th><th>{{ t.delete_col }}</th></tr>{% for u in users %}<tr><td>{{ u['username'] }}</td><td>{{ u['role'] }}</td><td>{% if u['role']!='admin' %}<a href="/admin/delete_user/{{ u['id'] }}" onclick="return confirm('{{ t.confirm_delete }}')" class="btn btn-red">{{ t.delete_btn }}</a>{% endif %}</td></tr>{% endfor %}<tr><form action="/admin/add_user" method="post"><input type="hidden" name="csrf_token" value="{{ csrf_token() }}"><td><input type="text" name="username" placeholder="{{ t.user_col }}" required></td><td><input type="password" name="password" placeholder="{{ t.password_placeholder }}" required></td><td><button type="submit" class="btn btn-green">{{ t.add_btn }}</button></td></form></tr></table><h2>{{ t.shares_heading }}</h2><table><tr><th>{{ t.name_col }}</th><th>{{ t.path_col }}</th><th>{{ t.remove_col }}</th></tr>{% for s in shares %}<tr><td>{{ s['name'] }}</td><td>{{ s['path'] }}</td><td><a href="/admin/delete_share/{{ s['id'] }}" onclick="return confirm('{{ t.confirm_delete }}')" class="btn btn-red">{{ t.delete_btn }}</a></td></tr>{% endfor %}<tr><form action="/admin/add_share" method="post"><input type="hidden" name="csrf_token" value="{{ csrf_token() }}"><td><input type="text" name="name" placeholder="{{ t.name_col }}" required></td><td style="display:flex;"><input type="text" id="sharePathInput" name="path" required><button type="button" onclick="openFolderModal()" class="btn btn-gray">{{ t.select_folder_btn }}</button></td><td><button type="submit" class="btn btn-blue">{{ t.add_btn }}</button></td></form></tr></table><h3>{{ t.permissions_heading }}</h3><div style="overflow-x:auto;"><table border="1"><tr><th>{{ t.user_folder_col }}</th>{% for s in shares %}<th>{{ s['name'] }}</th>{% endfor %}</tr>{% for u in users %}{% if u['role']!='admin' %}<tr><td><b>{{ u['username'] }}</b></td>{% for s in shares %}<td style="text-align:center;"><input type="checkbox" onchange="togglePerm({{ u['id'] }}, {{ s['id'] }}, this)" {% if u['id'] in permissions and s['id'] in permissions[u['id']] %}checked{% endif %}></td>{% endfor %}</tr>{% endif %}{% endfor %}</table></div><div id="folderModal" class="modal"><div class="modal-content"><h3>{{ t.select_folder_title }}</h3><div id="currentPathDisplay" style="background:var(--bg);padding:5px;">/</div><ul id="dirList" class="file-list"></ul><div style="text-align:right;"><button onclick="selectCurrentFolder()" class="btn btn-green">{{ t.select_btn }}</button><button onclick="closeModal()" class="btn btn-red">{{ t.cancel_btn }}</button></div></div></div></div></body></html>"""
 
 # --- YARDIMCI FONKSİYONLAR ---
 def init_db():
@@ -172,7 +310,7 @@ def admin_required(f):
 # --- INDEX MOTORU ---
 def perform_full_scan():
     try:
-        INDEX_STATUS["status"] = "🚀 Gece Modu: Taranıyor..."
+        INDEX_STATUS["status"] = "🚀 Scanning..."
         INDEX_STATUS["total_files"] = 0
         conn = get_db_connection()
         conn.execute('DELETE FROM file_index')
@@ -182,7 +320,7 @@ def perform_full_scan():
         all_shares = cur.fetchall()
         total_counter = 0
         for s_id, s_name, s_path in all_shares:
-            INDEX_STATUS["status"] = f"📂 Taranıyor: {s_name}"
+            INDEX_STATUS["status"] = f"📂 Scanning: {s_name}"
             if os.path.exists(s_path):
                 for root, dirs, files in os.walk(s_path):
                     INDEX_STATUS["current_path"] = root
@@ -200,9 +338,9 @@ def perform_full_scan():
                     if batch: conn.executemany('INSERT INTO file_index VALUES (?, ?, ?, ?, ?)', batch); conn.commit()
                     if total_counter % 50 == 0: INDEX_STATUS["total_files"] = total_counter
         conn.close()
-        INDEX_STATUS["status"] = "✅ Hazır (Gece Bekleniyor)"
-        INDEX_STATUS["current_path"] = f"Son tarama: {datetime.now().strftime('%H:%M')}"
-    except Exception as e: INDEX_STATUS["status"] = f"❌ Hata: {str(e)}"
+        INDEX_STATUS["status"] = "✅ Ready"
+        INDEX_STATUS["current_path"] = f"Last scan: {datetime.now().strftime('%H:%M')}"
+    except Exception as e: INDEX_STATUS["status"] = f"❌ Error: {str(e)}"
 
 def background_scanner_loop():
     conn = get_db_connection()
@@ -212,17 +350,17 @@ def background_scanner_loop():
     conn.close()
 
     if count == 0:
-        print("--- Veritabanı boş, ilk tarama başlatılıyor ---")
+        print("--- Database empty, starting initial scan ---")
         perform_full_scan()
     else:
-        print("--- Veritabanı dolu, önceki kayıtlar kullanılıyor (Persistent Cache) ---")
-        INDEX_STATUS["status"] = "✅ Hazır (Önbellekten Yüklendi)"
+        print("--- Database loaded, using persistent cache ---")
+        INDEX_STATUS["status"] = "✅ Ready (Cached)"
         INDEX_STATUS["total_files"] = count
 
     while True:
         now = datetime.now()
         if 2 <= now.hour < 6:
-            print(f"[{now}] Gece modu saati geldi. Tarama başlıyor...")
+            print(f"[{now}] Night mode started. Scanning...")
             perform_full_scan()
             time.sleep(14400)
         else:
@@ -258,13 +396,13 @@ def setup():
             except Exception as e:
                 print(f"[SETUP HATA] {e}")
                 flash(f"Hata: {e}", "error")
-    return render_template_string(HTML_SETUP)
+    return render_template_string(HTML_SETUP, t=get_lang())
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
     if not is_setup_completed(): return redirect(url_for('setup'))
     ip = request.remote_addr
-    if check_ban_status(ip): return render_template_string(HTML_LOGIN), 403
+    if check_ban_status(ip): return render_template_string(HTML_LOGIN, t=get_lang()), 403
     if request.method == "POST":
         u, p = request.form.get("username"), request.form.get("password")
         try:
@@ -278,10 +416,16 @@ def login():
             else:
                 record_failed_attempt(ip); time.sleep(2); flash("Hatalı giriş!", "error")
         except: flash("Hata.", "error")
-    return render_template_string(HTML_LOGIN)
+    return render_template_string(HTML_LOGIN, t=get_lang())
 
 @app.route("/logout")
 def logout(): session.clear(); return redirect(url_for('login'))
+
+@app.route("/lang/<string:code>")
+def set_language(code):
+    if code in LANGUAGES:
+        session['lang'] = code
+    return redirect(request.referrer or url_for('login'))
 
 @app.route("/admin")
 @login_required
@@ -295,7 +439,7 @@ def admin_panel():
         if r['user_id'] not in perms: perms[r['user_id']] = []
         perms[r['user_id']].append(r['share_id'])
     conn.close()
-    return render_template_string(HTML_ADMIN, users=users, shares=shares, permissions=perms)
+    return render_template_string(HTML_ADMIN, users=users, shares=shares, permissions=perms, t=get_lang())
 
 @app.route("/admin/list_dirs", methods=["POST"])
 def list_dirs():
@@ -414,7 +558,7 @@ def browse(path):
     shares = get_user_shares(session['user_id'], session['role'])
     if not path:
         items = [{"name": k, "path": k, "is_dir": True, "is_drive": True} for k in shares]
-        return render_template_string(HTML_INDEX, items=items, path="", breadcrumbs=[], is_admin=(session['role']=='admin'), q=q)
+        return render_template_string(HTML_INDEX, items=items, path="", breadcrumbs=[], is_admin=(session['role']=='admin'), q=q, t=get_lang())
     
     d_name, rel_p, abs_p, s_id = get_drive_info(path, session['user_id'], session['role'])
     if not abs_p: abort(404)
@@ -448,7 +592,7 @@ def browse(path):
         acc = (acc + "/" + part).strip("/")
         breadcrumbs.append({"name": part, "path": acc})
 
-    return render_template_string(HTML_INDEX, items=items, path=path, breadcrumbs=breadcrumbs, q=q, is_admin=(session['role']=='admin'))
+    return render_template_string(HTML_INDEX, items=items, path=path, breadcrumbs=breadcrumbs, q=q, is_admin=(session['role']=='admin'), t=get_lang())
 
 # --- OTO PORT ---
 def find_available_port(start_port):
