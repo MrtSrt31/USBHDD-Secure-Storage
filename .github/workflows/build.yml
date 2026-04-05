@@ -22,6 +22,12 @@ jobs:
             artifact: USBHDD-macOS-arm64
             exe_path: dist/USBHDD
 
+          - os: macos-12          # Intel (macOS 12 Monterey - eski/legacy runner)
+            arch: x64
+            artifact: USBHDD-macOS-x64
+            exe_path: dist/USBHDD
+            allow_fail: true   # macos-12 deprecated, build can be unstable
+
           - os: ubuntu-22.04
             arch: x64
             artifact: USBHDD-Linux-x64
@@ -29,6 +35,7 @@ jobs:
 
     runs-on: ${{ matrix.os }}
     name: ${{ matrix.artifact }}
+    continue-on-error: ${{ matrix.allow_fail == true }}
 
     steps:
       # ── Checkout ─────────────────────────────────────────────────────────
@@ -98,7 +105,10 @@ jobs:
             |---|---|
             | Windows (64-bit) | `USBHDD-Windows-x64.exe` |
             | macOS Apple Silicon (M1/M2/M3) | `USBHDD-macOS-arm64` |
+            | macOS Intel ⚠️ *(legacy, macOS 12 Monterey runner ile derlendi)* | `USBHDD-macOS-x64` |
             | Linux (64-bit) | `USBHDD-Linux-x64` |
+
+            > **macOS Intel notu:** Intel build, GitHub'ın desteklediği son Intel runner'ı olan macOS 12 (Monterey) üzerinde derlenmiştir. Bu runner deprecated (eski) statüsünde olduğundan build başarısız olursa artifact listede yer almayabilir.
 
             ### First run
             1. Download the file for your platform
