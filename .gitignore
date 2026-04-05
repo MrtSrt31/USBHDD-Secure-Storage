@@ -1,0 +1,43 @@
+# --- Güvenli veri klasörü ---
+data/
+
+# --- Sertifika & anahtar dosyaları ---
+*.pem
+*.key
+*.crt
+*.p12
+
+# --- Veritabanı ---
+*.db
+*.sqlite
+*.sqlite3
+
+# --- Crash & build raporları ---
+nuitka-crash-report.xml
+*.spec
+build/
+dist/
+1cikti/
+cikti/
+
+# --- Yedek & geliştirme artıkları ---
+*.yedek
+*.bak
+*.backup
+
+# --- Python ---
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.so
+
+# --- IDE ---
+.idea/
+.vscode/
+*.iml
+
+# --- macOS ---
+.DS_Store
+.AppleDouble
+.LSOverride

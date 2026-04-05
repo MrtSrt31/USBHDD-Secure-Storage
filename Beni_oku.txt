@@ -1,0 +1,70 @@
+🛡️ USBHDD Secure File Manager v1.0
+"Verileriniz Sizin Kontrolünüzde, Askeri Düzeyde Güvenlikle."
+
+Bu sistem, yerel ağda veya internet üzerinde çalışabilen, yüksek performanslı, ölçeklenebilir ve güvenli bir dosya yönetim platformudur.
+
+🔥 ÖNE ÇIKAN ÖZELLİKLER
+
+1. 🔐 Gelişmiş Güvenlik Katmanı
+
+Akıllı Dosya Kalkanı: Zararlı olabilecek dosya türlerinin yüklenmesi, hem istemci hem de sunucu tarafında çalışan çok katmanlı analiz sistemiyle engellenir.
+
+Şifreli Veri Depolama: Sistem, önbelleğe alınan hassas verileri endüstri standardı güçlü şifreleme algoritmalarıyla korur. Fiziksel sunucu erişimi olsa dahi veriler anlamsız veri yığınları olarak görünür ve okunamaz.
+
+Saldırı Tespit ve Engelleme: Gelişmiş saldırı tespit sistemi, şüpheli giriş denemelerini ve kaba kuvvet (brute-force) saldırılarını anlık olarak algılar ve saldırganı sistemden otomatik olarak izole eder.
+
+Güvenli Kimlik Doğrulama: Kullanıcı parolaları, modern kriptografik hashleme yöntemleri ve tuzlama (salting) teknikleriyle geri döndürülemez şekilde saklanır.
+
+CSRF Koruması: Oturum güvenliği, sahte isteklere karşı gelişmiş token doğrulama sistemleri ile sağlanır.
+
+2. ⚙️ Akıllı Yönetim & Admin Paneli
+
+Güvenli Kurulum Sihirbazı: Kurulum dosyalarında şifre saklamaya son! Sistem ilk açılışta güvenli bir ortam oluşturarak yönetici yapılandırmasını başlatır.
+
+Rol Tabanlı Erişim Kontrolü (RBAC): Yönetici ve Kullanıcı seviyesinde ayrıştırılmış yetkilendirme mimarisi.
+
+Granüler Yetkilendirme: Yönetici, hangi kullanıcının hangi klasöre erişebileceğini detaylı yetki matrisi üzerinden anlık olarak yönetebilir.
+
+Web Tabanlı Klasör Yönetimi: Sunucu dizinlerine doğrudan web arayüzü üzerinden güvenli erişim sağlayarak paylaşım noktalarını kolayca seçebilirsiniz.
+
+3. 💻 Modern & Hızlı Arayüz
+
+Entegre Medya Görüntüleyici: Resimler ve Videolar indirilmeye gerek kalmadan tarayıcı içinde, özel bir oynatıcı (Lightbox) ile görüntülenir.
+
+Dinamik Arama & Sıralama: Klasör içinde anlık arama yapılabilir; İsme, Tarihe ve Boyuta göre akıllı sıralama seçenekleri mevcuttur.
+
+Kullanıcı Dostu Bildirimler: İşlem durumları ve uyarılar, kullanıcıyı teknik detaylara boğmadan anlaşılır bildirimlerle sunulur.
+
+4. 🏗️ Teknik Altyapı
+
+İzole Veritabanı Mimarisi: Tüm kullanıcı ve izin verileri, işletim sisteminden bağımsız, izole bir veritabanı yapısında tutulur.
+
+SSL/TLS Desteği: Sistem, uçtan uca şifreleme (HTTPS) standartlarına tam uyumlu olarak çalışır.
+
+🚀 Neden USBHDD Secure File Manager?
+
+Geleneksel ağ paylaşım protokolleri (SMB/FTP), yerel ağlarda standart olsa da, modern dünyanın ihtiyaçlarına cevap vermekte yetersiz kalır. İşte sistemimizin fark yarattığı alanlar:
+
+1. 🌍 Evrensel Erişim ve "Clientless" Mimari
+
+Geleneksel Sorun: Dosya paylaşmak için karşı cihazda özel ayarlar yapmanız veya 3. parti istemci uygulamaları kurmanız gerekir.
+
+Çözümümüz: Sıfır Kurulum. Cihazda bir web tarayıcısı olması yeterlidir. Akıllı televizyonunuzdan, telefonunuzdan veya herhangi bir bilgisayardan saniyeler içinde güvenli erişim sağlarsınız.
+
+2. 🛡️ İnternet Çağına Uygun Güvenlik
+
+Geleneksel Sorun: Eski protokolleri (SMB/FTP) internete açmak büyük güvenlik riskleri barındırır ve siber saldırılara davetiye çıkarır.
+
+Çözümümüz: Bankacılık standartlarında HTTPS şifreleme ve uygulama katmanında çalışan aktif saldırı engelleme sistemleri ile verileriniz her ortamda güvendedir.
+
+3. 🎬 "İndirme, İzle" (Streaming) Deneyimi
+
+Geleneksel Sorun: Yüksek boyutlu medyaları görüntülemek için dosyanın tamamının cihazın önbelleğine alınması gerekir, bu da yavaşlığa neden olur.
+
+Çözümümüz: Entegre Medya Oynatıcı, videoları ve görselleri indirmeye gerek kalmadan tarayıcı üzerinden akıcı bir şekilde oynatır (Streaming).
+
+4. 👤 İzole Kullanıcı Yönetimi
+
+Geleneksel Sorun: Paylaşım yetkisi vermek için işletim sistemi üzerinde gerçek kullanıcı hesapları açmanız gerekir, bu da sistem güvenliğini riske atar.
+
+Çözümümüz: Sistem kendi izole kullanıcı veritabanını kullanır. Paylaşım yaptığınız kişiler işletim sisteminize asla doğrudan erişemez, sadece uygulamanın izin verdiği sanal alanda hareket ederler.
