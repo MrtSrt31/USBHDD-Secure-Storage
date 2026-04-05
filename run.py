@@ -56,12 +56,12 @@ class StandaloneApplication(BaseApplication):
 
 if __name__ == "__main__":
     # --- SERTİFİKA KONTROLÜ (Doğru Yerde Mi?) ---
-    cert_path = os.path.join(backend.APP_ROOT, "cert.pem")
-    key_path = os.path.join(backend.APP_ROOT, "key.pem")
+    cert_path = backend.CERT_FILE
+    key_path = backend.KEY_FILE
 
     if not os.path.exists(cert_path) or not os.path.exists(key_path):
         print("⚠️ Sertifika oluşturuluyor...")
-        os.system(f'openssl req -x509 -newkey rsa:4096 -nodes -out "{cert_path}" -keyout "{key_path}" -days 365 -subj "/C=TR/ST=Turkey/L=Istanbul/O=USBHDD/OU=IT/CN=localhost" > /dev/null 2>&1')
+        backend.check_and_create_certs()
 
     # --- PORT VE IP HAZIRLIĞI ---
     target_port = find_free_port(8143)

@@ -516,6 +516,7 @@ def admin_required(f):
 
 # --- INDEX MOTORU ---
 def perform_full_scan():
+    conn = None
     try:
         INDEX_STATUS["status"] = "🚀 Scanning..."
         INDEX_STATUS["total_files"] = 0
@@ -544,10 +545,12 @@ def perform_full_scan():
                         except: pass
                     if batch: conn.executemany('INSERT INTO file_index VALUES (?, ?, ?, ?, ?)', batch); conn.commit()
                     if total_counter % 50 == 0: INDEX_STATUS["total_files"] = total_counter
-        conn.close()
         INDEX_STATUS["status"] = "✅ Ready"
         INDEX_STATUS["current_path"] = f"Last scan: {datetime.now().strftime('%H:%M')}"
-    except Exception as e: INDEX_STATUS["status"] = f"❌ Error: {str(e)}"
+    except Exception as e:
+        INDEX_STATUS["status"] = f"❌ Error: {str(e)}"
+    finally:
+        if conn: conn.close()
 
 def background_scanner_loop():
     conn = get_db_connection()
@@ -573,7 +576,7 @@ def background_scanner_loop():
         else:
             time.sleep(60)
 
-threading.Thread(target=background_scanner_loop, daemon=True).start()
+# NOT: Thread init_db()'den sonra başlatılıyor (aşağıda)
 
 @app.route("/admin/indexing_status")
 @login_required
@@ -810,9 +813,11 @@ def find_available_port(start_port):
             except OSError: port += 1
     return start_port
 
-# Gunicorn veya doğrudan çalıştırma fark etmeksizin her zaman başlat
+# init_db her zaman çalışır (hem doğrudan hem gunicorn)
 init_db()
 check_and_create_certs()
+# Thread init_db'den SONRA başlatılıyor (race condition önlenir)
+threading.Thread(target=background_scanner_loop, daemon=True).start()
 
 if __name__ == "__main__":
     port = find_available_port(8143)
