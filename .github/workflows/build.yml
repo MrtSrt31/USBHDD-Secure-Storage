@@ -1,0 +1,118 @@
+name: Build Executables
+
+on:
+  push:
+    tags:
+      - "v*"          # Trigger on version tags: git tag v1.0.0 && git push --tags
+  workflow_dispatch:  # Also allow manual trigger from GitHub UI
+
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: windows-latest
+            arch: x64
+            artifact: USBHDD-Windows-x64.exe
+            exe_path: dist/USBHDD.exe
+
+          - os: macos-14          # Apple Silicon (M1/M2/M3)
+            arch: arm64
+            artifact: USBHDD-macOS-arm64
+            exe_path: dist/USBHDD
+
+          - os: macos-13          # Intel
+            arch: x64
+            artifact: USBHDD-macOS-x64
+            exe_path: dist/USBHDD
+
+          - os: ubuntu-22.04
+            arch: x64
+            artifact: USBHDD-Linux-x64
+            exe_path: dist/USBHDD
+
+    runs-on: ${{ matrix.os }}
+    name: ${{ matrix.artifact }}
+
+    steps:
+      # ── Checkout ─────────────────────────────────────────────────────────
+      - uses: actions/checkout@v4
+
+      # ── Python ───────────────────────────────────────────────────────────
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"   # Stable, well-supported by all deps
+          architecture: ${{ matrix.arch }}
+
+      # ── System deps (Linux only) ──────────────────────────────────────────
+      - name: Install system deps (Linux)
+        if: runner.os == 'Linux'
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y libssl-dev libjpeg-dev zlib1g-dev
+
+      # ── Python deps ───────────────────────────────────────────────────────
+      - name: Install Python dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install pyinstaller
+
+      # ── Build ─────────────────────────────────────────────────────────────
+      - name: Build with PyInstaller
+        run: pyinstaller USBHDD.spec --noconfirm --clean
+
+      # ── Rename artifact ───────────────────────────────────────────────────
+      - name: Rename artifact
+        shell: bash
+        run: mv "${{ matrix.exe_path }}" "dist/${{ matrix.artifact }}"
+
+      # ── Upload artifact ───────────────────────────────────────────────────
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.artifact }}
+          path: dist/${{ matrix.artifact }}
+          retention-days: 30
+
+  # ── Create GitHub Release when a tag is pushed ───────────────────────────
+  release:
+    name: Create Release
+    needs: build
+    if: startsWith(github.ref, 'refs/tags/')
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Download all artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: release-assets
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          name: "USBHDD Secure Storage ${{ github.ref_name }}"
+          body: |
+            ## USBHDD Secure Storage ${{ github.ref_name }}
+
+            ### Download
+            | Platform | File |
+            |---|---|
+            | Windows (64-bit) | `USBHDD-Windows-x64.exe` |
+            | macOS Apple Silicon (M1/M2/M3) | `USBHDD-macOS-arm64` |
+            | macOS Intel | `USBHDD-macOS-x64` |
+            | Linux (64-bit) | `USBHDD-Linux-x64` |
+
+            ### First run
+            1. Download the file for your platform
+            2. **macOS/Linux**: Run `chmod +x USBHDD-*` in terminal first
+            3. Double-click (or run from terminal)
+            4. Browser opens automatically at `https://localhost:8143`
+            5. Accept the self-signed certificate warning
+            6. Complete the one-time setup
+          files: release-assets/**/*
+          draft: false
+          prerelease: false

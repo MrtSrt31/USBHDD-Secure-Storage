@@ -15,6 +15,9 @@ data/
 # --- Crash & build raporları ---
 nuitka-crash-report.xml
 *.spec
+!USBHDD.spec
+backend.spec
+USBHDD_Manager_Mac.spec
 build/
 dist/
 1cikti/
