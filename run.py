@@ -71,11 +71,14 @@ if __name__ == "__main__":
     available_ips = get_all_local_ips()
 
     options = {
-        'bind': f'0.0.0.0:{target_port}', # TÜM AĞLARA YAYIN YAP (ÖNEMLİ)
-        'workers': 1,
+        'bind': f'0.0.0.0:{target_port}',
+        'workers': 1,      # SQLite + threading.Thread nedeniyle 1 kalmalı
+        'threads': 4,      # Tek process içinde eşzamanlı 4 istek
+        'worker_class': 'gthread',
         'certfile': cert_path,
         'keyfile': key_path,
         'timeout': 120,
+        'graceful_timeout': 30,
         'loglevel': 'warning'
     }
     
