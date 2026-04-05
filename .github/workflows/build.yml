@@ -22,11 +22,6 @@ jobs:
             artifact: USBHDD-macOS-arm64
             exe_path: dist/USBHDD
 
-          - os: macos-13          # Intel
-            arch: x64
-            artifact: USBHDD-macOS-x64
-            exe_path: dist/USBHDD
-
           - os: ubuntu-22.04
             arch: x64
             artifact: USBHDD-Linux-x64
@@ -103,7 +98,6 @@ jobs:
             |---|---|
             | Windows (64-bit) | `USBHDD-Windows-x64.exe` |
             | macOS Apple Silicon (M1/M2/M3) | `USBHDD-macOS-arm64` |
-            | macOS Intel | `USBHDD-macOS-x64` |
             | Linux (64-bit) | `USBHDD-Linux-x64` |
 
             ### First run
