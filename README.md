@@ -121,6 +121,53 @@ The selected language is stored in the session and persists until changed or log
 
 ---
 
+## Changelog
+
+### v1.0.2 — UI Improvements
+
+#### CSS (global)
+
+- **Custom scrollbars** — slim, styled to match the dark theme
+- **Better file cards** — square `aspect-ratio:1` thumbnails instead of fixed height; smoother hover with layered shadow + translate
+- **List view** — new `.view-list` class for a compact row layout, persisted to `localStorage`
+- **Drag-drop overlay** — full-page overlay with animated border when dragging files over the browser window
+- **Upload toast** — non-blocking notification in the corner (uploading / success / error)
+- **Custom confirm dialog** — replaces browser `confirm()` with a modal that matches the app's style
+- **Empty state** — friendly message + icon when a folder has no files
+- **Light theme polish** — section header backgrounds + drop overlay tint
+- **Navbar** — slightly taller, better focus ring on search input, search-clear button
+- **Buttons** — added `active` state scaling, cleaner hover colors (no `filter:brightness` hack)
+- **Monitor bar** — multi-color gradient + `background-position` animation instead of `scaleX`
+
+#### Login & Setup pages
+
+- **Password show/hide toggle** — 👁 button inside the input
+- **Loading state** — submit button disables and shows `…` on click to prevent double-submit
+- **Better sizing** — card uses `max-width: calc(100vw - 32px)` for small screens
+
+#### File Browser (`/`)
+
+- **Grid ↔ List toggle** — button in navbar, state saved across page loads
+- **Search clear button** — ✕ appears inside the search bar when there's a query
+- **Drag-and-drop upload** — drop any file anywhere on the page; uses the existing `/upload/` endpoint with the CSRF token from the existing form
+- **Custom delete confirmation** — modal instead of `window.confirm()`, with filename shown
+- **Empty folder state** — shown when folder has no items
+- **Media viewer** — now shows filename at top and `1 / N` counter at bottom; keyboard arrows still work
+
+#### Admin Panel
+
+- **Section headers** — background differentiates them from content rows
+- **Better monitor** — calls `updateMonitor()` immediately on load instead of waiting 2 s
+- **Readable HTML** — template is properly indented (no functional change)
+
+---
+
+## Contributors
+
+- **[MrtSrt31](https://github.com/MrtSrt31)** — creator & maintainer
+
+---
+
 ## License
 
 MIT License — use freely, attribution appreciated.
